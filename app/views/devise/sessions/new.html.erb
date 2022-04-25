@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <h2 class="col-5 py-5">ログイン</h2>
+<%= form_with model: @user, url: user_session_path do |f| %>
+  </div>
+
+      <table class="table table-borderless">
+        <tr>
+          <th><%= f.label :メールアドレス %></th>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email", :size => "50" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :パスワード %></th>
+          <td><%= f.password_field :password, autocomplete: "current-password", :size => "50" %></td>
+        </tr>
+      </table>
+
+      <div class="actions py-5 text-right">
+        <%= f.submit "ログイン", class: "btn btn-primary btn-lg px-5" %>
+      </div>
+
+<% end %>
+
+</div>

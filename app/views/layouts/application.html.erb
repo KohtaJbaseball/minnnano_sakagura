@@ -1,16 +1,71 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Pf</title>
+    <title>みんなの酒蔵</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2a0caffc1c.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
+    <header class="bg-image"
+            style="background-image: url('https://www.pakutaso.com/shared/img/thumb/IBUS458A1817_TP_V.jpg');
+                   background-position: right 35% bottom 35%;
+                   background-size: cover;">
+      <nav class="navbar navbar-expand-lg navbar-light text-light py-5">
+        <div class="container-fluid">
+          <h1>みんなの酒蔵</h1>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+                <% if user_signed_in? %>
+                  <li class="nav-item">
+                    <%= link_to "トップ", login_top_path, class: 'nav-link text-light' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "マイページ", users_my_page_path, class: 'nav-link text-light' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "酒蔵を見る", post_drinks_path, class: 'nav-link text-light' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
+                  </li>
+                <% else %>
+                  <li class="nav-item">
+                    <%= link_to "トップ", root_path, class: 'nav-link text-light' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light' %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "ゲストログイン", post_drinks_path, class: 'nav-link text-light' %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+        </div>
+      </nav>
+    </header>
+  <body>
     <%= yield %>
   </body>
+  <footer class="footer mt-5 py-2 px-1 bg-light border-top border-dark">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-4 text-center py-3 text-dark">© minnnano sakagura</div>
+      </div>
+    </div>
+  </footer>
 </html>
