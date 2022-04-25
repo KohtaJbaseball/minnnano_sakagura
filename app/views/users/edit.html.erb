@@ -1,0 +1,38 @@
+<h1 class="col-5 text-center pt-5">ユーザー情報編集</h1>
+<%= form_with model: @user, url: user_path(@user), method: :patch do |f| %>
+
+  <div class="col-10 py-5 px-5 mx-5">
+    <table class="table table-borderless">
+      <tr>
+        <th><%= f.label :ニックネーム %></th>
+        <td><%= f.text_field :nickname, :size => "50" %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :生年月日 %></th>
+        <td><%= f.date_select :birthday, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 20), default: Date.new(1989, 1, 1) %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :性別 %></th>
+        <td>
+          <%= f.label :男性 %>
+          <%= f.radio_button :sex, :man %>
+          <%= f.label :女性 %>
+          <%= f.radio_button :sex, :woman %>
+          <%= f.label :その他 %>
+          <%= f.radio_button :sex, :others %>
+        </td>
+      </tr>
+      <tr>
+        <th><%= f.label :メールアドレス %></th>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "email", :size => "50" %></td>
+      </tr>
+      <tr>
+        <th></th>
+        <td>
+          <%= f.submit '変更を保存する', class: "btn btn-success btn-md mx-5" %>
+          <%= link_to "退会する", users_quit_path, class: "btn btn-danger btn-md mx-5" %>
+        </td>
+      </tr>
+    </table>
+  </div>
+<% end %>

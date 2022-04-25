@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <h2 class="col-5 py-5">新規登録</h2>
+    <%= form_with model: @user, url: user_registration_path  do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+  </div>
+
+
+        <table class="table table-borderless">
+          <tr>
+            <th><%= f.label :ニックネーム %></th>
+            <td><%= f.text_field :nickname, :size => "50" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :生年月日 %></th>
+            <td><%= f.date_select :birthday, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 20), default: Date.new(1989, 1, 1) %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :性別 %></th>
+            <td>
+              <%= f.label :男性 %>
+              <%= f.radio_button :sex, :man %>
+              <%= f.label :女性 %>
+              <%= f.radio_button :sex, :woman %>
+              <%= f.label :その他 %>
+              <%= f.radio_button :sex, :others %>
+            </td>
+          </tr>
+          <tr>
+            <th><%= f.label :メールアドレス %></th>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", :size => "50" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :パスワード %></th>
+            <td>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> 文字以上)</em>
+              <% end %><br />
+              <%= f.password_field :password, autocomplete: "new-password", :size => "50" %>
+            </td>
+          </tr>
+          <tr>
+            <th><%= f.label :パスワード（確認用） %></th>
+            <td><%= f.password_field :password_confirmation, autocomplete: "new-password", :size => "50" %></td>
+          </tr>
+          <tr>
+            <th></th>
+            <td class="text-right">
+              <%= f.submit "新規登録", class: "btn btn-success btn-lg px-5" %>
+            </td>
+          </tr>
+        </table>
+
+        <h3 class="pt-5 pb-3">新規登録がお済の方はこちらから</h3>
+        <%= link_to "ログイン", new_user_session_path %>
+    <% end %>
+
+</div>

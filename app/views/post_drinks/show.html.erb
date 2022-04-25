@@ -1,0 +1,54 @@
+<h1 class="col-3 text-center pt-5">お酒の詳細</h1>
+<div class="row">
+  <div class="col-6 py-5 px-5 text-center">
+    <% if @post_drink.image.attached? %>
+      <%= image_tag @post_drink.image, size: "400x400" %>
+    <% else %>
+      <%= image_tag 'no_image2', size: "400x400" %>
+    <% end %>
+  </div>
+  <div class="col-4 py-5 px-2">
+    <table class="table table-borderless">
+      <tr>
+        <th>
+          <h4><%= @post_drink.name %></h4>
+        </th>
+    </tr>
+      <tr>
+        <td><%= @post_drink.introduction %></td>
+      </tr>
+      <tr>
+        <td>ジャンル:<%= @post_drink.genre %></td>
+      </tr>
+      <tr>
+        <td>投稿者:<%= @post_drink.user.nickname %></td>
+    </tr>
+      <tr>
+        <td>
+          <% if @post_drink.favorited_by?(current_user) %>
+            <p>
+              <%= link_to post_drink_favorites_path(@post_drink), method: :delete do %>
+                ♥<%= @post_drink.favorites.count %>
+              <% end %>
+            </p>
+          <% else %>
+            <p>
+              <%= link_to post_drink_favorites_path(@post_drink), method: :post do %>
+                いいねする♡<%= @post_drink.favorites.count %>
+              <% end %>
+            </p>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="py-5 text-center">
+  <% if @post_drink.user == current_user %>
+    <%= link_to "編集する", edit_post_drink_path(@post_drink.id), class: "btn btn-success btn-lg mx-3" %>
+    <%= link_to "このお酒を削除する", post_drink_path(@post_drink), method: :delete, class: "btn btn-danger btn-lg mx-3" %>
+  <% end %>
+</div>
+
+

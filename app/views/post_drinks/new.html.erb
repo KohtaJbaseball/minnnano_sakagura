@@ -1,0 +1,33 @@
+<h1 class="col-6 text-center pt-5">おすすめのお酒を投稿しましょう！</h1>
+<%= form_with model: @post_drink do |f| %>
+
+  <div class="col-8 py-5 px-5 mx-5">
+    <table class="table table-borderless">
+      <tr>
+        <th><%= f.label :お酒の名前 %></th>
+        <td><%= f.text_field :name, :size => "50" %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :お酒の紹介 %></th>
+        <td><%= f.text_area :introduction, :size => "50x10" %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :お酒の画像 %></th>
+        <td><%= f.file_field :image, accept: "image/*" %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :お酒のジャンル %></th>
+        <td>
+          <%= f.select :genre, ["ワイン", "ビール", "日本酒",
+                              "ウイスキー", "ブランデー", "ジン", "ウォッカ", "ラム酒", "テキーラ", "焼酎",
+                              "その他(果実酒・リキュール・カクテル・サワーなど)"], include_blank: "選択してください" %>
+        </td>
+      </tr>
+      <tr>
+        <th></th>
+        <td class="text-right"><%= f.submit '投稿する', class: "btn btn-success btn-lg px-5 " %></td>
+      </tr>
+    </table>
+  </div>
+
+<% end %>

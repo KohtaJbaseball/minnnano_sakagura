@@ -1,0 +1,51 @@
+
+    <div class="col text-right pt-3 pb-5">
+      <%= form_with url: post_drinks_path, method: :get, local: true do |f| %>
+        <%= f.label :ジャンル検索 %>
+        <%= f.select :search, ["ワイン", "ビール", "日本酒",
+                              "ウイスキー", "ブランデー", "ジン", "ウォッカ", "ラム酒", "テキーラ", "焼酎",
+                              "その他(果実酒・リキュール・カクテル・サワーなど)"], include_blank: "選択してください" %>
+        <%= f.submit '🔍', name: nil, class: "btn btn-white" %>
+      <% end %>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <% @post_drinks.each do |post_drink| %>
+        <% if user_signed_in? %>
+          <div class="col-6 py-5 px-5 mx-4">
+            <h4>
+              <%= link_to post_drink_path(post_drink.id) do %>
+                <%= post_drink.name %>
+              <% end %>
+            </h4>
+            <p><%= post_drink.introduction %></p>
+            <p class="text-danger">
+              ♥<%= post_drink.favorites.count %>いいね
+              <a class="mx-3"><%= link_to "詳細", post_drink_path(post_drink.id) %></a>
+            </p>
+          </div>
+          <div class="col-4 py-5 mx-5 text-center">
+            <% if post_drink.image.attached? %>
+              <%= image_tag post_drink.image, size: "250x250" %>
+            <% else %>
+              <%= image_tag 'no_image2', size: "250x250" %>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="col-6 py-5 px-5 mx-4">
+            <h4><%= post_drink.name %></h4>
+            <p><%= post_drink.introduction %></p>
+            <p>♥<%= post_drink.favorites.count %>いいね</p>
+          </div>
+          <div class="col-4 py-5 mx-5 text-center">
+            <% if post_drink.image.attached? %>
+              <%= image_tag post_drink.image, size: "250x250" %>
+            <% else %>
+              <%= image_tag 'no_image2', size: "250x250" %>
+            <% end %>
+          </div>
+        <% end %>
+        <% end %>
+      </div>
+    </div>

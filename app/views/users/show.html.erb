@@ -1,0 +1,54 @@
+<div class="container">
+    <h1 class="col-3 pt-5">マイページ</h1>
+
+    <div class="row">
+      <div class="col-8 py-5">
+        <table class="table table-borderless">
+            <tr>
+              <th>ニックネーム</th>
+              <td><%= @user.nickname %></td>
+            </tr>
+            <tr>
+              <th>生年月日</th>
+              <td><%= @user.birthday %></td>
+            </tr>
+            <tr>
+              <th>性別</th>
+              <td><%= @user.sex_i18n %></td>
+            </tr>
+            <tr>
+              <th>メールアドレス</th>
+              <td><%= @user.email %></td>
+            </tr>
+            <tr>
+              <th></th>
+              <td>
+                <%= link_to "プロフィールを変更する", edit_user_path(@user), class: "btn btn-success btn-md mx-3" %>
+                <%= link_to "お酒を投稿する", new_post_drink_path, class: "btn btn-success btn-md mx-5" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+    <h3 class="py-3 pt-5">ご自身の投稿一覧</h3>
+    <p class="pb-4">
+      <% @user.post_drinks.each do |post_drink| %>
+        <%= link_to post_drink_path(post_drink) do %>
+          <%= post_drink.name %> /
+        <% end %>
+      <% end %>
+    </p>
+
+    <h3 class="py-3 pt-3">いいねしているお酒</h3>
+    <p>
+      <% @user.favorites.each do |favorite| %>
+        <%= link_to post_drink_path(favorite.post_drink) do %>
+          <%= favorite.post_drink.name %> /
+        <% end %>
+      <% end %>
+    </p>
+
+</div>
