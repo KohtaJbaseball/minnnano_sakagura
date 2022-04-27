@@ -25,6 +25,7 @@
 また他人がおすすめしているお酒や新しいお酒を知りたいとき。
 
 ## 設計書
+https://docs.google.com/spreadsheets/d/1AzJ_-xyg9egpcLqu_qbrgXiwLWjOZ1jlYtF6QcminAk/edit?usp=sharing
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1a-XPw84-5182OO3-Nu9g_ugCrnTg4un0Zc4gQX9Zeew/edit?usp=sharing
