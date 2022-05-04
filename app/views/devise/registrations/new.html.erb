@@ -43,13 +43,11 @@
             <th><%= f.label :パスワード（確認用） %></th>
             <td><%= f.password_field :password_confirmation, autocomplete: "new-password", :size => "50" %></td>
           </tr>
-          <tr>
-            <th></th>
-            <td class="text-right">
-              <%= f.submit "新規登録", class: "btn btn-success btn-lg px-5" %>
-            </td>
-          </tr>
         </table>
+
+      <div class="actions py-5 text-right">
+        <%= f.submit "新規登録", class: "btn btn-success btn-lg px-5" %>
+      </div>
 
         <h3 class="pt-5 pb-3">新規登録がお済の方はこちらから</h3>
         <%= link_to "ログイン", new_user_session_path %>
